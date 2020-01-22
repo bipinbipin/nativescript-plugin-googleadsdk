@@ -1,6 +1,9 @@
 import { Common } from './googleadsdk.common';
 export declare class Googleadsdk extends Common {
-  // define your typings manually
-  // or..
-  // take the ios or android .d.ts files and copy/paste them here
+  constructor();
+  showBanner(): void;
+  removeBanner(): void;
+  destroyNativeView(): void;
 }
+export declare function createBanner(): Promise<{}>;
+export declare function hideBanner(): Promise<any>;
