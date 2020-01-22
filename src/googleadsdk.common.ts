@@ -28,10 +28,10 @@ export class Utils {
 
 export const testMessage = "Hello Google Ad SDK Plugin!";
 
-//  prod ad: "/30582678/mpr/mpr.app/home"
+
 //  test ad: "/6499/example/banner"
 export const adCommon = {
   adView: undefined,
   adSize: {"size": {"width": 0, "height": 0, "smartHeight": (device.deviceType === DeviceType.Tablet) ? 90 : 50}, "flags": 18},
-  adUnitId: "/30582678/mpr/mpr.app/home"
+  adUnitId: "/6499/example/banner"
 };
