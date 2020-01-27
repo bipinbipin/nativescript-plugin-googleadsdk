@@ -13,21 +13,16 @@ export class Googleadsdk extends Common {
         // this.hideBanner();
     }
 
-    showBanner(){
+    public showBanner(adUnitID: string){
         // wait for {n} to render root view
         setTimeout(() => {
-            createBanner();
+            createBanner(adUnitID);
         }, 1000);
     }
 
-
-    removeBanner() {
-        setTimeout(() => {
-            console.log('hiding banner')
-            hideBanner();
-        }, 10000);
+    public removeBanner() {
+        hideBanner();
     }
-
 
     destroyNativeView() {
 
@@ -35,7 +30,7 @@ export class Googleadsdk extends Common {
 
 }
 
-export function createBanner() {
+export function createBanner(adUnitID: string) {
     return new Promise(function (resolve, reject) {
         try {
             let defaultView = UIApplication.sharedApplication.keyWindow.rootViewController.view;
@@ -50,7 +45,7 @@ export function createBanner() {
         
             adCommon.adView = DFPBannerView.alloc().initWithAdSizeOrigin(adCommon.adSize, origin);
     
-            adCommon.adView.adUnitID = adCommon.adUnitId;
+            adCommon.adView.adUnitID = adUnitID;
     
             let adRequest = GADRequest.request();
     
