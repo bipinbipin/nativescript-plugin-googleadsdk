@@ -1,23 +1,23 @@
 import { Common, adCommon } from './googleadsdk.common';
 
-
 declare var DFPBannerView
-declare var GADBannerView
 declare var GADRequest
 
 export class Googleadsdk extends Common {
 
     constructor() {
         super();
-        // this.showBanner();
-        // this.hideBanner();
     }
 
     public showBanner(adUnitID: string){
         // wait for {n} to render root view
         setTimeout(() => {
-            createBanner(adUnitID);
+            createAndDisplayBanner(adUnitID);
         }, 1000);
+    }
+
+    public showTestBanner() {
+        this.showBanner('/6499/example/banner')
     }
 
     public removeBanner() {
@@ -30,7 +30,7 @@ export class Googleadsdk extends Common {
 
 }
 
-export function createBanner(adUnitID: string) {
+export function createAndDisplayBanner(adUnitID: string) {
     return new Promise(function (resolve, reject) {
         try {
             let defaultView = UIApplication.sharedApplication.keyWindow.rootViewController.view;
@@ -38,7 +38,7 @@ export function createBanner(adUnitID: string) {
             var adHeight = adCommon.adSize.size.smartHeight;
     
             console.log(defaultView)
-    
+            
             var originX = (defaultView.frame.size.width - adWidth) / 2;
             var originY = defaultView.frame.size.height - adHeight;
             var origin = CGPointMake(originX, originY);
