@@ -1,7 +1,7 @@
 import { Common } from './googleadsdk.common';
 export declare class Googleadsdk extends Common {
   constructor();
-  showBanner(): void;
+  showBanner(adUnitId: string): void;
   removeBanner(): void;
   destroyNativeView(): void;
 }

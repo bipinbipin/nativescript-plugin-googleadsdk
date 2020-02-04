@@ -1,7 +1,7 @@
 import { Common, adCommon } from './googleadsdk.common';
 
-declare var DFPBannerView
-declare var GADRequest
+declare var DFPBannerView;
+declare var GADRequest;
 
 export class Googleadsdk extends Common {
 
@@ -9,7 +9,7 @@ export class Googleadsdk extends Common {
         super();
     }
 
-    public showBanner(adUnitID: string){
+    public showBanner(adUnitID: string) {
         // wait for {n} to render root view
         setTimeout(() => {
             createAndDisplayBanner(adUnitID);
@@ -17,7 +17,7 @@ export class Googleadsdk extends Common {
     }
 
     public showTestBanner() {
-        this.showBanner('/6499/example/banner')
+        this.showBanner('/6499/example/banner');
     }
 
     public removeBanner() {
@@ -34,28 +34,28 @@ export function createAndDisplayBanner(adUnitID: string) {
     return new Promise(function (resolve, reject) {
         try {
             let defaultView = UIApplication.sharedApplication.keyWindow.rootViewController.view;
-            var adWidth = defaultView.frame.size.width;
-            var adHeight = adCommon.adSize.size.smartHeight;
-    
-            console.log(defaultView)
-            
-            var originX = (defaultView.frame.size.width - adWidth) / 2;
-            var originY = defaultView.frame.size.height - adHeight;
-            var origin = CGPointMake(originX, originY);
-        
+            let adWidth = defaultView.frame.size.width;
+            let adHeight = adCommon.adSize.size.smartHeight;
+
+            // console.log(defaultView);
+
+            let originX = (defaultView.frame.size.width - adWidth) / 2;
+            let originY = defaultView.frame.size.height - adHeight;
+            let origin = CGPointMake(originX, originY);
+
             adCommon.adView = DFPBannerView.alloc().initWithAdSizeOrigin(adCommon.adSize, origin);
-    
+
             adCommon.adView.adUnitID = adUnitID;
-    
+
             let adRequest = GADRequest.request();
-    
+
             adCommon.adView.rootViewController = UIApplication.sharedApplication.keyWindow.rootViewController;
-    
+
             adCommon.adView.loadRequest(adRequest);
-    
+
             defaultView.addSubview(adCommon.adView);
-            console.log('added subview adview')
-            console.log(adCommon.adView)
+            // console.log('added subview adview');
+            // console.log(adCommon.adView);
 
             resolve();
         } catch (ex) {
@@ -68,7 +68,7 @@ export function createAndDisplayBanner(adUnitID: string) {
 export function hideBanner(): Promise<any> {
     return new Promise((resolve, reject) => {
       try {
-        console.log(adCommon)
+        // console.log(adCommon);
         if (adCommon.adView !== null) {
           // adView.delegate = null;
           adCommon.adView.removeFromSuperview();
